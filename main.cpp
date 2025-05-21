@@ -16,7 +16,7 @@ void displayMenu() {
     cout << "Enter your choice (1-3): ";
 }
 
-// Only show user-friendly locations
+// show the names of the locations
 static const vector<string> userLocations = {
     "AUC Library",                                // 0
     "School of Sciences and Engineering",         // 1
@@ -49,7 +49,7 @@ void displayLocations() {
         cout << i + 1 << ": " << userLocations[i] << endl;
     }
 }
-
+// validate the input given by the user
 int getValidInput(int min, int max) {
     int input;
     while (true) {
@@ -66,6 +66,7 @@ int getValidInput(int min, int max) {
     }
 }
 
+// function to take an input source and destination from the user
 void findShortestPath(Graph& g) {
     displayLocations();
     cout << "\nChoose starting location (1-20): ";
@@ -73,7 +74,8 @@ void findShortestPath(Graph& g) {
 
     cout << "Choose destination location (1-20): ";
     int destLocation = getValidInput(1, 20);
-
+    
+// we do minus 1 to change mapping from 1 based indexing (shown to the user) to 0 based indexing (used in our implementation)
     int srcNode = (srcLocation - 1);
     int destNode = (destLocation - 1);
 
