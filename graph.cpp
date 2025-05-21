@@ -68,13 +68,17 @@ void Graph::dijkstra(int src, int dest) {
     dist[src] = 0;
     pq.push({0, src});
 
+    // Pop the root of the heap each time, and check the nodes connected to it.
+    
+
     while (!pq.empty()) {
         int u = pq.top().second;
         pq.pop();
 
         if (visited[u]) continue;
         visited[u] = true;
-
+// if they are visited dont go. if not explore them
+ // explore the neigbours and update the distances to be the smallest possible       
         for (int v = 0; v < rows; ++v) {
             if (adjMatrix[u][v] != INF && dist[u] + adjMatrix[u][v] < dist[v]) {
                 dist[v] = dist[u] + adjMatrix[u][v];
@@ -87,7 +91,8 @@ void Graph::dijkstra(int src, int dest) {
     printPath(dist, path, src, dest);
 }
 
-// using the previous predecessor vector we defined, we reconstruct the path between two nodes. 
+// using the previous predecessor vector we defined, we reconstruct the path between two nodes.
+
 void Graph::printPath(const vector<int>& dist, const vector<int>& path, int src, int dest) const {
     if (dist[dest] == INF) {
         cout << "No path from ";
