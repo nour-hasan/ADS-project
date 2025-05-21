@@ -55,7 +55,8 @@ void Graph::createGraph(const string& filename) {
     }
 }
 
-// our implementation for dijkstra
+// the definition of the dijkstra algorithim
+
 void Graph::dijkstra(int src, int dest) {
     // first initialzie the matrices
     vector<int> dist(rows, INF);
