@@ -8,13 +8,15 @@
 #include <utility>
 
 using namespace std;
-
+// Defining a very large value to mimic infinity
 const int INF = 1e9;
 
+// constructor defining the number of dimensions of the matrix to zero by zero
 Graph::Graph() : rows(0) {}
 
 Graph::~Graph() {}
 
+// this function reads the text file and according to the type of graph updates the adjacency matrix accordingly
 void Graph::createGraph(const string& filename) {
     ifstream inputFile(filename);
     if (!inputFile.is_open()) {
@@ -33,6 +35,8 @@ void Graph::createGraph(const string& filename) {
 
     adjMatrix.assign(rows, vector<int>(rows, INF));
 
+    
+// read the weight if the graph is weighted
     while (getline(inputFile, line)) {
         istringstream edgeStream(line);
         int x, y, val = 1;
@@ -51,12 +55,13 @@ void Graph::createGraph(const string& filename) {
     }
 }
 
+// our implementation for dijkstra
 void Graph::dijkstra(int src, int dest) {
+    // first initialzie the matrices
     vector<int> dist(rows, INF);
     vector<int> path(rows, -1);
     vector<bool> visited(rows, false);
-
-    // Min-heap priority queue: (distance, vertex)
+    // define a min-heap priority queue: (distance, vertex) to find the closest neighbour easily
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
 
     dist[src] = 0;
@@ -81,6 +86,7 @@ void Graph::dijkstra(int src, int dest) {
     printPath(dist, path, src, dest);
 }
 
+// using the previous predecessor vector we defined, we reconstruct the path between two nodes. 
 void Graph::printPath(const vector<int>& dist, const vector<int>& path, int src, int dest) const {
     if (dist[dest] == INF) {
         cout << "No path from ";
@@ -104,6 +110,7 @@ void Graph::printPath(const vector<int>& dist, const vector<int>& path, int src,
     cout << "\n\n Distance covered is " << dist[dest] << " meters\n";
 }
 
+// a simple function to print the locations on AUC campus
 void Graph::printLocation(int node) const {
     static const vector<string> nodeNames = {
         "AUC Library",                                // 0
