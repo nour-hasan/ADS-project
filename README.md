@@ -13,5 +13,6 @@ There are no external installations required to run this code. This code was wri
 ## Dataset
 
 The dataset containing the nodes and edges is found under the name of AUCcampus.txt  
+It can be found in the cmake folder
 
 Try running the program and navigate your way through AUC! 
